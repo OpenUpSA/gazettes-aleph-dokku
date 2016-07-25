@@ -20,8 +20,14 @@
     ALEPH_DATABASE_URI=postgresql://aleph:aleph@postgres/aleph \
     ALEPH_ELASTICSEARCH_URI=http://elasticsearch:9200/
     NEW_RELIC_APP_NAME="Aleph" \
-    NEW_RELIC_LICENSE_KEY=...
+    NEW_RELIC_LICENSE_KEY=... \
+    C_FORCE_ROOT='true' \
+    POLYGLOT_DATA_PATH=/opt/aleph/data \
+    TESSDATA_PREFIX=/usr/share/tesseract-ocr
+
+
 ```
 ```
 dokku docker-options:add aleph run,deploy  "-v /var/log/aleph:/var/log"
+dokku docker-options:add aleph run,deploy  "-v /var/lib/aleph:/opt/aleph/data"
 ```

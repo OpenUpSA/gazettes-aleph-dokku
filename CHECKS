@@ -1,1 +1,4 @@
-/ Investigativa
+WAIT=10
+ATTEMPTS=5
+
+/search Investigative
