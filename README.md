@@ -20,3 +20,7 @@
     ALEPH_DATABASE_URI=postgresql://aleph:aleph@postgres/aleph \
     ALEPH_ELASTICSEARCH_URI=http://elasticsearch:9200/
 ```
+```
+dokku docker-options:add aleph run,deploy  "-v /var/log/aleph:/var/log"
+dokku docker-options:add aleph run,deploy  "-v /var/log/gunicorn.log:/var/log/gunicorn.log"
+```
