@@ -6,7 +6,7 @@ RUN mkdir /app
 
 RUN pip install newrelic==2.46.0.37
 
-COPY CHECKS /app/CHECKS
+COPY CHECKS /aleph/CHECKS
 COPY Procfile /app/Procfile
 
 ENV ALEPH_SETTINGS /aleph/contrib/docker_settings.py
