@@ -2,8 +2,7 @@ FROM pudo/aleph
 
 ENV ELASTICSEARCH_INDEX aleph
 
-RUN mv /aleph /app
-WORKDIR /app
+RUN mkdir /app
 
 RUN pip install newrelic==2.46.0.37
 
