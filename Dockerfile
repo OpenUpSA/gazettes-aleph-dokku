@@ -5,7 +5,8 @@ ENV ELASTICSEARCH_INDEX aleph
 
 WORKDIR /aleph
 
-COPY CHECKS /aleph/CHECKS
-COPY Procfile /aleph/Procfile
+RUN mkdir /app
+COPY CHECKS /app/CHECKS
+COPY Procfile /app/Procfile
 
 ENV ALEPH_SETTINGS /aleph/contrib/docker_settings.py
