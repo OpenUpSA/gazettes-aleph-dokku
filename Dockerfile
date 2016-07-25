@@ -1,4 +1,4 @@
-FROM pudo/aleph
+FROM pudo/aleph:latest
 
 ENV ELASTICSEARCH_INDEX aleph
 
@@ -10,3 +10,5 @@ COPY CHECKS /aleph/CHECKS
 COPY Procfile /app/Procfile
 
 ENV ALEPH_SETTINGS /aleph/contrib/docker_settings.py
+
+WORKDIR /aleph
