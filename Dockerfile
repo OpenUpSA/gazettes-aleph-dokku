@@ -7,7 +7,6 @@ RUN pip install newrelic==2.46.0.37
 
 RUN mkdir /app
 
-COPY CHECKS /app/CHECKS
 COPY Procfile /app/Procfile
 
 WORKDIR /aleph
