@@ -7,6 +7,6 @@ RUN pip install newrelic==2.46.0.37
 
 RUN mkdir /app
 
-COPY Procfile /app/Procfile
-
 WORKDIR /aleph
+
+CMD newrelic-admin run-program gunicorn -w 5 -b 0.0.0.0:5000 --log-level info --log-file - aleph.manage:app
