@@ -1,14 +1,13 @@
 FROM pudo/aleph:latest
 
 ENV ELASTICSEARCH_INDEX aleph
-
-RUN mkdir /app
+ENV ALEPH_SETTINGS /aleph/contrib/docker_settings.py
 
 RUN pip install newrelic==2.46.0.37
 
-COPY CHECKS /aleph/CHECKS
-COPY Procfile /app/Procfile
+RUN mkdir /app
 
-ENV ALEPH_SETTINGS /aleph/contrib/docker_settings.py
+COPY CHECKS /app/CHECKS
+COPY Procfile /app/Procfile
 
 WORKDIR /aleph
