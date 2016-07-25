@@ -22,5 +22,4 @@
 ```
 ```
 dokku docker-options:add aleph run,deploy  "-v /var/log/aleph:/var/log"
-dokku docker-options:add aleph run,deploy  "-v /var/log/gunicorn.log:/var/log/gunicorn.log"
 ```
