@@ -1,4 +1,4 @@
-FROM pudo/aleph:bdg7cdbp8bwm8djkpbzbv5
+FROM pudo/aleph
 ENV DEBIAN_FRONTEND noninteractive
 
 WORKDIR /aleph
