@@ -4,6 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV ELASTICSEARCH_INDEX aleph
 
 COPY CHECKS /
+COPY Procfile /
 
 WORKDIR /
 
