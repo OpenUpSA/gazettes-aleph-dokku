@@ -17,5 +17,6 @@
     AWS_ACCESS_KEY_ID=... \
     AWS_SECRET_ACCESS_KEY=... \
     ALEPH_BROKER_URI=sqs://sqs.eu-west-1.amazonaws.com/.../
-    ALEPH_DATABASE_URI=postgresql://aleph:aleph@postgres/aleph
+    ALEPH_DATABASE_URI=postgresql://aleph:aleph@postgres/aleph \
+    ALEPH_ELASTICSEARCH_URI=http://elasticsearch:9200/
 ```
