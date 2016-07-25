@@ -19,6 +19,8 @@
     ALEPH_BROKER_URI=sqs://sqs.eu-west-1.amazonaws.com/.../
     ALEPH_DATABASE_URI=postgresql://aleph:aleph@postgres/aleph \
     ALEPH_ELASTICSEARCH_URI=http://elasticsearch:9200/
+    NEW_RELIC_APP_NAME="Aleph" \
+    NEW_RELIC_LICENSE_KEY=...
 ```
 ```
 dokku docker-options:add aleph run,deploy  "-v /var/log/aleph:/var/log"
