@@ -2,7 +2,8 @@
 
 ## Deployment
 
-```dokku config:set aleph \
+```
+dokku config:set aleph \
     ALEPH_APP_TITLE="Aleph Code4SA" \
     ALEPH_APP_NAME=aleph \
     ALEPH_FAVICON=http://code4sa.org/favicon.ico \
