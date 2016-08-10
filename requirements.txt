@@ -1,0 +1,2 @@
+newrelic==2.46.0.37
+git+git://github.com/Code4SA/aleph_zagazettecrawler.git
