@@ -24,8 +24,8 @@ dokku config:set aleph \
     NEW_RELIC_LICENSE_KEY=... \
     C_FORCE_ROOT='true' \
     POLYGLOT_DATA_PATH=/opt/aleph/data \
-    TESSDATA_PREFIX=/usr/share/tesseract-ocr
-
+    TESSDATA_PREFIX=/usr/share/tesseract-ocr \
+    ALEPH_PDF_OCR_IMAGE_PAGES=false
 
 ```
 ```
