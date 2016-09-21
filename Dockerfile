@@ -1,7 +1,7 @@
 FROM pudo/aleph:latest
 
 ENV ELASTICSEARCH_INDEX aleph
-ENV ALEPH_SETTINGS /aleph/code4sa_aleph_settings.py
+ENV ALEPH_SETTINGS /aleph/code4sa_aleph_config.py
 ENV ZA_GAZETTE_ARCHIVE_URI: http://s3-eu-west-1.amazonaws.com/code4sa-gazettes/archive/
 
 COPY code4sa_aleph_settings.py /aleph/code4sa_aleph_settings.py

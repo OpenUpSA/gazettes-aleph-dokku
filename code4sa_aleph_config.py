@@ -24,7 +24,7 @@ UPLOAD_FOLDER = path.join(gettempdir(), 'aleph_uploads')
 MAX_CONTENT_LENGTH = 500 * 1024 * 1024
 
 # Set up a custom SCSS file with additional style rules here.
-CUSTOM_SCSS_PATH = None
+CUSTOM_SCSS_PATH = '/aleph/code4sa_css/opengazettes.scss'
 CUSTOM_TEMPLATES_DIR = []
 
 # Shown on the home page as a few sample queries:
@@ -86,9 +86,9 @@ OCR_DEFAULTS = ['en']
 
 SECRET_KEY = env.get('SECRET_KEY')
 
-SQLALCHEMY_DATABASE_URI = env.get('DATABASE_URL', 'sqlite:///aleph.sqlite3')
+SQLALCHEMY_DATABASE_URI = env.get('ALEPH_DATABASE_URI', 'sqlite:///aleph.sqlite3')
 SQLALCHEMY_TRACK_MODIFICATIONS = False
-ELASTICSEARCH_URL = env.get('BONSAI_URL', 'http://localhost:9200')
+ELASTICSEARCH_URL = env.get('ALEPH_ELASTICSEARCH_URI', 'http://localhost:9200')
 
 ALEMBIC_DIR = path.join(path.dirname(__file__), 'migrate')
 ALEMBIC_DIR = path.abspath(ALEMBIC_DIR)
@@ -107,7 +107,7 @@ CELERY_IGNORE_RESULT = True
 CELERY_RESULT_BACKEND = 'amqp'
 CELERY_RESULT_PERSISTENT = False
 CELERY_ACKS_LATE = True
-CELERY_BROKER_URL = env.get('RABBITMQ_BIGWIG_URL',
+CELERY_BROKER_URL = env.get('ALEPH_BROKER_URI',
                             'amqp://guest:guest@localhost:5672//')
 CELERY_IMPORTS = ('aleph.queue')
 
