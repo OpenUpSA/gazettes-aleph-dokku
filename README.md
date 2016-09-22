@@ -7,10 +7,10 @@ dokku config:set aleph \
     ALEPH_APP_TITLE="Aleph Code4SA" \
     ALEPH_APP_NAME=aleph \
     ALEPH_FAVICON=http://code4sa.org/favicon.ico \
-    ALEPH_APP_URL=http://aleph.code4sa.org \
+    ALEPH_APP_URL=https://search.opengazettes.org.za \
     ALEPH_LOGO=http://code4sa.org/images/logo.png \
     ALEPH_SECRET_KEY=... \
-    ALEPH_URL_SCHEME=http \
+    ALEPH_URL_SCHEME=https \
     ALEPH_OAUTH_KEY=... \
     ALEPH_OAUTH_SECRET=... \
     ALEPH_ARCHIVE_TYPE=s3 \
