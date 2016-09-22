@@ -1,5 +1,66 @@
 # Aleph in Dokku
 
+## Development
+
+Developing against the prod cluster isn't very practical because of the need to tunnel connections to ElasticSearch.
+
+The aleph repo has an example docker-compose file which sets up all the dependencies to run a full cluster locally. It's super convenient. You can modify it (it even supports relative paths) to map the assets in this repo into the container for local development.
+
+You can for example configure it like this from the aleph repo clone directory
+
+Modify the web service like this
+```
+  web:
+      build: ../aleph-web
+      ports:
+        - "13376:8000"
+      links:
+        - postgres
+        - elasticsearch
+        - rabbitmq
+      volumes:
+        - "/:/host"
+        - "./logs:/var/log"
+        - "../aleph-web/code4sa_aleph_config.py:/aleph/code4sa_aleph_config.py"
+        - "../aleph-web/css:/aleph/code4sa_css"
+        - "../aleph-web/templates:/aleph/code4sa_templates"
+      environment:
+        ALEPH_ELASTICSEARCH_URI: http://elasticsearch:9200/
+        ALEPH_DATABASE_URI: postgresql://aleph:aleph@postgres/aleph
+        ALEPH_BROKER_URI: amqp://guest:guest@rabbitmq:5672
+        ALEPH_SETTINGS: /aleph/code4sa_aleph_config.py
+      env_file:
+        - aleph.env
+```
+
+aleph.env
+```
+# Name needs to be a slug, as it is used e.g. for the ES index, SQS queue name:
+ALEPH_APP_NAME=aleph
+ALEPH_FAVICON=https://investigativedashboard.org/static/favicon.ico
+ALEPH_APP_URL=http://localhost:13376
+ALEPH_LOGO=http://assets.pudo.org/img/logo_bigger.png
+
+# Random string:
+ALEPH_SECRET_KEY=oru239cn293uner923unc130nc
+ALEPH_URL_SCHEME=http
+
+# Expects Google OAuth credentials to be set up:
+# https://console.developers.google.com/apis/credentials?
+# Source and Redirect host would be http://localhost:13376
+ALEPH_OAUTH_KEY=...
+ALEPH_OAUTH_SECRET=...
+
+# Where and how to store the underlying files:
+ALEPH_ARCHIVE_TYPE=file
+ALEPH_ARCHIVE_BUCKET=code4sa-aleph
+AWS_ACCESS_KEY_ID=AKIAIYR3UAOJ3KGY3HTA
+AWS_SECRET_ACCESS_KEY=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
+
+# Or, if 'ALEPH_ARCHIVE_TYPE' configuration is 'file':
+ALEPH_ARCHIVE_PATH=/aleph/filestore
+```
+
 ## Deployment
 
 ```

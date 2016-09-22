@@ -1,4 +1,4 @@
-FROM pudo/aleph:latest
+FROM pudo/aleph@sha256:b314372071e8cb86d1fab6fa9bc480b48b5b01afa67cc63c50e80466863921ae
 
 ENV ELASTICSEARCH_INDEX aleph
 ENV ALEPH_SETTINGS /aleph/code4sa_aleph_config.py
@@ -15,4 +15,4 @@ COPY CHECKS /app/CHECKS
 
 WORKDIR /aleph
 
-CMD newrelic-admin run-program gunicorn -w 5 -b 0.0.0.0:5000 --log-level info --log-file - aleph.manage:app
+CMD newrelic-admin run-program gunicorn --workers 1 -b 0.0.0.0:8000 --worker-class gevent --timeout 600 --max-requests 3000 --max-requests-jitter 100 --log-file - --access-logfile - aleph.manage:app
