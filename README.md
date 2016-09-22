@@ -54,8 +54,6 @@ ALEPH_OAUTH_SECRET=...
 # Where and how to store the underlying files:
 ALEPH_ARCHIVE_TYPE=file
 ALEPH_ARCHIVE_BUCKET=code4sa-aleph
-AWS_ACCESS_KEY_ID=AKIAIYR3UAOJ3KGY3HTA
-AWS_SECRET_ACCESS_KEY=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
 
 # Or, if 'ALEPH_ARCHIVE_TYPE' configuration is 'file':
 ALEPH_ARCHIVE_PATH=/aleph/filestore
