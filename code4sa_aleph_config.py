@@ -1,130 +1,50 @@
-from celery.schedules import crontab
-from tempfile import gettempdir
-from os import environ as env, path
-import json
+import os
 
-DEBUG = True
-ASSETS_DEBUG = True
+DEBUG = False
+ASSETS_DEBUG = False
 CACHE = True
+SECRET_KEY = os.environ.get('ALEPH_SECRET_KEY')
 
-APP_TITLE = 'Aleph'
-APP_NAME = 'aleph'
-APP_LOGO = '/static/images/aleph_small.png'
-APP_FAVICON = '/static/images/aleph_small.png'
-APP_BASEURL = 'http://localhost:5000/'
-
-ARCHIVE_TYPE = 'file'
-ARCHIVE_AWS_KEY_ID = env.get('AWS_ACCESS_KEY_ID')
-ARCHIVE_AWS_SECRET = env.get('AWS_SECRET_ACCESS_KEY')
-# ARCHIVE_BUCKET = 'aleph2-dev.pudo.org'
-ARCHIVE_PATH = env.get('ARCHIVE_PATH', '/srv/data/aleph')
-
-
-UPLOAD_FOLDER = path.join(gettempdir(), 'aleph_uploads')
-MAX_CONTENT_LENGTH = 500 * 1024 * 1024
-
-# Set up a custom SCSS file with additional style rules here.
+APP_TITLE = os.environ.get('ALEPH_APP_TITLE', 'Aleph')
+APP_NAME = os.environ.get('ALEPH_APP_NAME', 'aleph')
+APP_BASEURL = os.environ.get('ALEPH_APP_URL')
+APP_LOGO = os.environ.get('ALEPH_LOGO')
+APP_FAVICON = os.environ.get('ALEPH_FAVICON')
 CUSTOM_SCSS_PATH = '/aleph/code4sa_css/opengazettes.scss'
-CUSTOM_TEMPLATES_DIR = []
 
-# Shown on the home page as a few sample queries:
-SAMPLE_SEARCHES = ['Serbia', 'TeliaSonera', 'Vladimir Putin']
+ELASTICSEARCH_URL = os.environ.get('ALEPH_ELASTICSEARCH_URI')
 
-# Language configuration
-DEFAULT_LANGUAGE = 'en'
-DEFAULT_LANGUAGES = ['en', 'fr', 'de', 'ru', 'es', 'nl', 'ro', 'ka',
-                     'ar', 'tr', 'lb', 'el', 'lt', 'uk', 'zh', 'be',
-                     'bg', 'bs', 'ja', 'cs', 'lv', 'pt', 'pl', 'hy',
-                     'hr', 'hi', 'he', 'uz', 'mo', 'mn', 'ur', 'sq',
-                     'ko', 'is', 'it', 'et', 'no', 'fa', 'sw', 'sl',
-                     'az']
-LANGUAGES = json.loads(env.get('ALEPH_LANGUAGES', json.dumps(DEFAULT_LANGUAGES)))
+SQLALCHEMY_DATABASE_URI = os.environ.get('ALEPH_DATABASE_URI')
 
-# Some styling info for the visual graph editor.
-# DEFAULT_GRAPH_ICON = '\uf0c8'  # http://fontawesome.io/icon/square/
-GRAPH_ICONS = {
-    '/entity/entity.json#': u'\uf0c8',
-    '/entity/legal_entity.json#': u'\uf0c8',
-    '/entity/person.json#': u'\uf007',
-    '/entity/company.json#': u'\uf1ad',
-    '/entity/organization.json#': u'\uf19c',
-    # http://fontawesome.io/icon/file-text/
-    'Document': u'\uf15c',
-    # http://fontawesome.io/icon/envelope/
-    'Email': u'\uf0e0',
-    # http://fontawesome.io/icon/phone/
-    'Phone': u'\uf095',
-    # http://fontawesome.io/icon/map-marker/
-    'Address': u'\uf041',
+PREFERRED_URL_SCHEME = os.environ.get('ALEPH_URL_SCHEME')
+
+MAIL_FROM = os.environ.get('MAIL_FROM')
+MAIL_SERVER = os.environ.get('MAIL_HOST')
+MAIL_ADMINS = [os.environ.get('MAIL_ADMIN')]
+MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+
+# this is GMail-specific, factor it out?
+MAIL_USE_TLS = True
+MAIL_PORT = 587
+
+CELERY_BROKER_URL = os.environ.get('ALEPH_BROKER_URI')
+BROKER_TRANSPORT_OPTIONS = {
+    'region': 'eu-west-1',
+    'queue_name_prefix': '%s.' % os.environ.get('ALEPH_APP_NAME', 'aleph')
 }
 
-# DEFAULT_GRAPH_COLOR = '#777777'
-GRAPH_COLORS = {
-    '/entity/entity.json#': '#f57153',
-    '/entity/legal_entity.json#': '#f57153',
-    '/entity/person.json#': '#fed149',
-    '/entity/company.json#': '#f57153',
-    '/entity/organization.json#': '#f57153',
-    'Document': '#3b6b9a',
-    'Email': '#4890d9',
-    'Phone': '#4890d9',
-    'Address': '#4890d9',
-}
+NEO4J_URI = os.environ.get('ALEPH_NEO4J_URI')
 
-# Binary paths for programs to which the ingestor shells out:
-TESSDATA_PREFIX = env.get('TESSDATA_PREFIX')
-PDFTOPPM_BIN = env.get('PDFTOPPM_BIN', 'pdftoppm')
-CONVERT_BIN = env.get('CONVERT_BIN', 'convert')
-SOFFICE_BIN = env.get('SOFFICE_BIN', 'soffice')
-WKHTMLTOPDF_BIN = env.get('WKHTMLTOPDF_BIN', 'wkhtmltopdf')
-DDJVU_BIN = env.get('DDJVU_BIN', 'ddjvu')
-MDB_TABLES_BIN = env.get('MDB_TABLES_BIN', 'mdb-tables')
-MDB_EXPORT_BIN = env.get('MDB_EXPORT_BIN', 'mdb-export')
-SEVENZ_BIN = env.get('SEVENZ_BIN', '7z')
-OCR_PDF_PAGES = True
-OCR_DEFAULTS = ['en']
-
-SECRET_KEY = env.get('SECRET_KEY')
-
-SQLALCHEMY_DATABASE_URI = env.get('ALEPH_DATABASE_URI', 'sqlite:///aleph.sqlite3')
-SQLALCHEMY_TRACK_MODIFICATIONS = False
-ELASTICSEARCH_URL = env.get('ALEPH_ELASTICSEARCH_URI', 'http://localhost:9200')
-
-ALEMBIC_DIR = path.join(path.dirname(__file__), 'migrate')
-ALEMBIC_DIR = path.abspath(ALEMBIC_DIR)
-
-SPINDLE_URL = 'https://search.occrp.org/'
-SPINDLE_API_KEY = None
-
-CELERY_ALWAYS_EAGER = False
-CELERY_EAGER_PROPAGATES_EXCEPTIONS = True
-# CELERYD_MAX_TASKS_PER_CHILD = 200
-CELERY_DISABLE_RATE_LIMITS = True
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TIMEZONE = 'UTC'
-CELERY_IGNORE_RESULT = True
-CELERY_RESULT_BACKEND = 'amqp'
-CELERY_RESULT_PERSISTENT = False
-CELERY_ACKS_LATE = True
-CELERY_BROKER_URL = env.get('ALEPH_BROKER_URI',
-                            'amqp://guest:guest@localhost:5672//')
-CELERY_IMPORTS = ('aleph.queue')
-
-CELERYBEAT_SCHEDULE = {
-    'alert-every-night': {
-        'task': 'aleph.alerts.check_alerts',
-        'schedule': crontab(hour=1, minute=30)
-    },
-    'scheduled-crawlers': {
-        'task': 'aleph.crawlers.execute_scheduled',
-        'schedule': crontab(hour='*/6', minute=40)
-    },
-}
+ARCHIVE_TYPE = os.environ.get('ALEPH_ARCHIVE_TYPE', 's3')
+ARCHIVE_AWS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+ARCHIVE_AWS_SECRET = os.environ.get('AWS_SECRET_ACCESS_KEY')
+ARCHIVE_BUCKET = os.environ.get('ALEPH_ARCHIVE_BUCKET')
+ARCHIVE_PATH = os.environ.get('ALEPH_ARCHIVE_PATH')
 
 OAUTH = {
-    'consumer_key': env.get('OAUTH_KEY'),
-    'consumer_secret': env.get('OAUTH_SECRET'),
+    'consumer_key': os.environ.get('ALEPH_OAUTH_KEY'),
+    'consumer_secret': os.environ.get('ALEPH_OAUTH_SECRET'),
     'request_token_params': {
         'scope': 'https://www.googleapis.com/auth/userinfo.email'
     },
@@ -134,3 +54,9 @@ OAUTH = {
     'access_token_url': 'https://accounts.google.com/o/oauth2/token',
     'authorize_url': 'https://accounts.google.com/o/oauth2/auth',
 }
+
+OCR_PDF_PAGES = os.environ.get('ALEPH_PDF_OCR_IMAGE_PAGES', 'true')
+OCR_PDF_PAGES = OCR_PDF_PAGES.strip().lower() == "true"
+
+MAX_CONTENT_LENGTH = int(os.environ.get('ALEPH_MAX_CONTENT_LENGTH',
+                                        500 * 1024 * 1024))
