@@ -11,6 +11,7 @@ APP_BASEURL = os.environ.get('ALEPH_APP_URL')
 APP_LOGO = os.environ.get('ALEPH_LOGO')
 APP_FAVICON = os.environ.get('ALEPH_FAVICON')
 CUSTOM_SCSS_PATH = '/aleph/code4sa_css/opengazettes.scss'
+CUSTOM_TEMPLATES_DIR = ['/aleph/code4sa_templates']
 
 ELASTICSEARCH_URL = os.environ.get('ALEPH_ELASTICSEARCH_URI')
 

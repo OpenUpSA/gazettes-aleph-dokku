@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+  web:
+      build: .
+      command: gunicorn -w 5 -b 0.0.0.0:8000 --log-level info --log-file /var/log/gunicorn.log aleph.manage:app
+      ports:
+        - "13376:8000"
+      volumes:
+        - "/:/host"
+        - "/opt/aleph/logs/web:/var/log"
+        - "/home/jdb/proj/code4sa/corpdata/aleph/gunicorn.log:/var/log/gunicorn.log"
+        - "/home/jdb/proj/code4sa/corpdata/aleph-web/code4sa_aleph_config.py:/aleph/code4sa_aleph_config.py"
+        - "/home/jdb/proj/code4sa/corpdata/aleph-web/css:/aleph/code4sa_css"
+        - "/home/jdb/proj/code4sa/corpdata/aleph-web/templates:/aleph/code4sa_templates"
+      env_file:
+        - aleph-prod.env
