@@ -11,7 +11,7 @@ You can for example configure it like this from the aleph repo clone directory
 Modify the web service like this
 ```
   web:
-      build: ../aleph-web
+      build: ../aleph-dokku
       ports:
         - "13376:8000"
       links:
@@ -21,9 +21,9 @@ Modify the web service like this
       volumes:
         - "/:/host"
         - "./logs:/var/log"
-        - "../aleph-web/code4sa_aleph_config.py:/aleph/code4sa_aleph_config.py"
-        - "../aleph-web/css:/aleph/code4sa_css"
-        - "../aleph-web/templates:/aleph/code4sa_templates"
+        - "../aleph-dokku/code4sa_aleph_config.py:/aleph/code4sa_aleph_config.py"
+        - "../aleph-dokku/css:/aleph/code4sa_css"
+        - "../aleph-dokku/templates:/aleph/code4sa_templates"
       environment:
         ALEPH_ELASTICSEARCH_URI: http://elasticsearch:9200/
         ALEPH_DATABASE_URI: postgresql://aleph:aleph@postgres/aleph
