@@ -8,6 +8,11 @@ The aleph repo has an example docker-compose file which sets up all the dependen
 
 You can for example configure it like this from the aleph repo clone directory
 
+Add this volume to the worker service
+```
+        - "./filestore:/aleph/filestore"
+```
+
 Modify the web service like this
 ```
   web:
@@ -24,6 +29,7 @@ Modify the web service like this
         - "../aleph-dokku/code4sa_aleph_config.py:/aleph/code4sa_aleph_config.py"
         - "../aleph-dokku/css:/aleph/code4sa_css"
         - "../aleph-dokku/templates:/aleph/code4sa_templates"
+        - "./filestore:/aleph/filestore"
       environment:
         ALEPH_ELASTICSEARCH_URI: http://elasticsearch:9200/
         ALEPH_DATABASE_URI: postgresql://aleph:aleph@postgres/aleph
