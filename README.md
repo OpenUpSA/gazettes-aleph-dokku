@@ -47,7 +47,9 @@ ALEPH_URL_SCHEME=http
 
 # Expects Google OAuth credentials to be set up:
 # https://console.developers.google.com/apis/credentials?
-# Source and Redirect host would be http://localhost:13376
+# Source host would be http://localhost:13376
+# and the redirect URL would be http://localhost:13376/api/1/sessions/callback
+
 ALEPH_OAUTH_KEY=...
 ALEPH_OAUTH_SECRET=...
 
