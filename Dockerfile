@@ -1,4 +1,4 @@
-FROM pudo/aleph@sha256:b314372071e8cb86d1fab6fa9bc480b48b5b01afa67cc63c50e80466863921ae
+FROM code4sa/aleph:latest
 
 ENV ELASTICSEARCH_INDEX aleph
 ENV ALEPH_SETTINGS /aleph/code4sa_aleph_config.py
