@@ -15,4 +15,4 @@ COPY CHECKS /app/CHECKS
 
 WORKDIR /aleph
 
-CMD newrelic-admin run-program gunicorn --workers 1 -b 0.0.0.0:8000 --worker-class gevent --timeout 600 --max-requests 3000 --max-requests-jitter 100 --log-file - --access-logfile - aleph.manage:app
+CMD newrelic-admin run-program gunicorn --workers 1 --worker-class gevent --timeout 600 --max-requests 3000 --max-requests-jitter 100 --log-file - --access-logfile - aleph.manage:app
