@@ -11,6 +11,8 @@ APP_BASEURL = os.environ.get('ALEPH_APP_URL')
 APP_LOGO = os.environ.get('ALEPH_LOGO')
 APP_FAVICON = os.environ.get('ALEPH_FAVICON')
 
+SAMPLE_SEARCHES = ['Eskom', 'SABC', '"call for comment"']
+
 ELASTICSEARCH_URL = os.environ.get('ALEPH_ELASTICSEARCH_URI')
 
 SQLALCHEMY_DATABASE_URI = os.environ.get('ALEPH_DATABASE_URI')
