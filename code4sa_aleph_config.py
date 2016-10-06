@@ -63,3 +63,4 @@ MAX_CONTENT_LENGTH = int(os.environ.get('ALEPH_MAX_CONTENT_LENGTH',
                                         500 * 1024 * 1024))
 
 GA_TRACKING_ID = 'UA-48399585-47'
+ALLOW_PEEKING = False
