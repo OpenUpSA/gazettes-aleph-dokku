@@ -54,8 +54,8 @@ OAUTH = [{
     'request_token_params': {'scope': 'email'}
 }, {
     'name': 'google',
-    'consumer_key': os.environ.get('ALEPH_OAUTH_KEY'),
-    'consumer_secret': os.environ.get('ALEPH_OAUTH_SECRET'),
+    'consumer_key': os.environ.get('GOOGLE_OAUTH_KEY'),
+    'consumer_secret': os.environ.get('GOOGLE_OAUTH_SECRET'),
     'request_token_params': {
         'scope': 'https://www.googleapis.com/auth/userinfo.email'
     },
