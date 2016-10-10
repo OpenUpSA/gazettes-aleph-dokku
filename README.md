@@ -99,3 +99,4 @@ dokku config:set aleph \
 dokku docker-options:add aleph run,deploy  "-v /var/log/aleph:/var/log"
 dokku docker-options:add aleph run,deploy  "-v /var/lib/aleph:/opt/aleph/data"
 ```
+
