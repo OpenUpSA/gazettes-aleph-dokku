@@ -43,7 +43,17 @@ ARCHIVE_AWS_SECRET = os.environ.get('AWS_SECRET_ACCESS_KEY')
 ARCHIVE_BUCKET = os.environ.get('ALEPH_ARCHIVE_BUCKET')
 ARCHIVE_PATH = os.environ.get('ALEPH_ARCHIVE_PATH')
 
-OAUTH = {
+OAUTH = [{
+    'name': 'facebook',
+    'base_url': 'https://graph.facebook.com/',
+    'request_token_url': None,
+    'access_token_url': 'oauth/access_token',
+    'authorize_url': 'https://www.facebook.com/dialog/oauth',
+    'consumer_key': os.environ.get('FACEBOOK_OAUTH_KEY'),
+    'consumer_secret': os.environ.get('FACEBOOK_OAUTH_SECRET'),
+    'request_token_params': {'scope': 'email'}
+}, {
+    'name': 'google',
     'consumer_key': os.environ.get('ALEPH_OAUTH_KEY'),
     'consumer_secret': os.environ.get('ALEPH_OAUTH_SECRET'),
     'request_token_params': {
@@ -54,7 +64,7 @@ OAUTH = {
     'access_token_method': 'POST',
     'access_token_url': 'https://accounts.google.com/o/oauth2/token',
     'authorize_url': 'https://accounts.google.com/o/oauth2/auth',
-}
+}]
 
 OCR_PDF_PAGES = os.environ.get('ALEPH_PDF_OCR_IMAGE_PAGES', 'true')
 OCR_PDF_PAGES = OCR_PDF_PAGES.strip().lower() == "true"
