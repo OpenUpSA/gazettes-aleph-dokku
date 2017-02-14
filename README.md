@@ -94,9 +94,9 @@ dokku config:set aleph \
     TESSDATA_PREFIX=/usr/share/tesseract-ocr \
     ALEPH_PDF_OCR_IMAGE_PAGES=false
 
-```
-```
 dokku docker-options:add aleph run,deploy  "-v /var/log/aleph:/var/log"
 dokku docker-options:add aleph run,deploy  "-v /var/lib/aleph:/opt/aleph/data"
+
+dokku ps:rebuild aleph
 ```
 
