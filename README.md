@@ -103,4 +103,3 @@ Then push this repo to your dokku remote:
     git push dokku
 
 Note that ``dokku ps:rebuild aleph`` doesn't seem to pick up changes from the Code4SA/aleph Docker image.
-
