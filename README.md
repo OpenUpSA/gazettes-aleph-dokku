@@ -96,6 +96,10 @@ dokku config:set aleph \
 
 dokku docker-options:add aleph run,deploy  "-v /var/log/aleph:/var/log"
 dokku docker-options:add aleph run,deploy  "-v /var/lib/aleph:/opt/aleph/data"
-
-dokku ps:rebuild aleph
 ```
+
+Then push this repo to your dokku remote:
+
+    git push dokku
+
+Note that ``dokku ps:rebuild aleph`` doesn't seem to pick up changes from the Code4SA/aleph Docker image.
