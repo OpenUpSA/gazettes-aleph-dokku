@@ -1,5 +1,14 @@
 # Aleph in Dokku
 
+This is one of three primary mechanisms for Code for SA to run Aleph inside Dokku. There are three aspects:
+
+1. aleph-dokku - web interface
+2. [aleph-dokku-worker](https://github.com/Code4SA/aleph-dokku-worker) - runs background tasks
+3. [aleph-dokku-beat](https://github.com/Code4SA/aleph-dokku-beat) - scheludes background tasks using Celery Beat
+
+This repo uses Dokku's Dockerfile support to build an image based on our [customised version of Aleph](https://github.com/Code4SA/aleph) which
+is built using [Docker Hub](hub.docker.com/r/code4sa/aleph/).
+
 ## Development
 
 Developing against the prod cluster isn't very practical because of the need to tunnel connections to ElasticSearch.
@@ -102,4 +111,4 @@ Then push this repo to your dokku remote:
 
     git push dokku
 
-Note that ``dokku ps:rebuild aleph`` doesn't seem to pick up changes from the Code4SA/aleph Docker image.
+**Note:** You MUST re-push this repo to ensure dokku picks up changes to the underlying code4sa/aleph docker image. Using ``dokku ps:rebuild aleph`` doesn't seem to pick up changes in the docker image.
