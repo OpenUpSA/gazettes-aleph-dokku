@@ -9,6 +9,28 @@ This is one of three primary mechanisms for Code for SA to run Aleph inside Dokk
 This repo uses Dokku's Dockerfile support to build an image based on our [customised version of Aleph](https://github.com/Code4SA/aleph) which
 is built using [Docker Hub](hub.docker.com/r/code4sa/aleph/).
 
+Here's a spiffy diagram:
+
+               +-------------+   +-------------+                         
+               | Dockerfile  |   | aleph repo  |                         
+               | aleph-base  |   |             |                         
+               +------|------+   +------|------+                 upstream
+                      |                 |            --------------------
+                      |                 |                         code4sa
+                      |          +------|------+                         
+                      |          | aleph repo  |                         
+                      |   +-------             |                         
+                      |   |      +-------------+                         
+               +------|---|--+                                           
+               | Dockerfile  ---------------------------------+          
+           +---- aleph       ----------+                      |          
+           |   +-------------+         |                      |          
+           |                           |                      |          
+    +------|-----+          +----------|---------+  +---------|---------+
+    | Dokku      |          | Dokku              |  | Dokku             |
+    | aleph      |          | aleph-dokku-worker |  | aleph-dokku-beat  |
+    +------------+          +--------------------+  +-------------------+
+
 ## Development
 
 Developing against the prod cluster isn't very practical because of the need to tunnel connections to ElasticSearch.
