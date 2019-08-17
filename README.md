@@ -11,21 +11,21 @@ is built using [Docker Hub](hub.docker.com/r/code4sa/aleph/).
 
 Here's a spiffy diagram:
 
-               +-------------+   +-------------+                         
-               | Dockerfile  |   | aleph repo  |                         
-               | aleph-base  |   |             |                         
+               +-------------+   +-------------+
+               | Dockerfile  |   | aleph repo  |
+               | aleph-base  |   |             |
                +------+------+   +------+------+                 upstream
                       |                 |            --------------------
                       |                 |                         code4sa
-                      |          +------+------+                         
-                      |          | aleph repo  |                         
-                      |   +------+             |                         
-                      |   |      +-------------+                         
-               +------+---|--+                                           
-               | Dockerfile  +--------------------------------+          
-           +---+ aleph       +---------+                      |          
-           |   +-------------+         |                      |          
-           |                           |                      |          
+                      |          +------+------+
+                      |          | aleph repo  |
+                      |   +------+             |
+                      |   |      +-------------+
+               +------+---|--+
+               | Dockerfile  +--------------------------------+
+           +---+ aleph       +---------+                      |
+           |   +-------------+         |                      |
+           |                           |                      |
     +------+-----+          +----------+---------+  +---------+---------+
     | Dokku      |          | Dokku              |  | Dokku             |
     | aleph      |          | aleph-dokku-worker |  | aleph-dokku-beat  |
@@ -118,8 +118,6 @@ dokku config:set aleph \
     ALEPH_BROKER_URI=sqs://sqs.eu-west-1.amazonaws.com/.../
     ALEPH_DATABASE_URI=postgresql://aleph:aleph@postgres/aleph \
     ALEPH_ELASTICSEARCH_URI=http://elasticsearch:9200/
-    NEW_RELIC_APP_NAME="Aleph" \
-    NEW_RELIC_LICENSE_KEY=... \
     C_FORCE_ROOT='true' \
     POLYGLOT_DATA_PATH=/opt/aleph/data \
     TESSDATA_PREFIX=/usr/share/tesseract-ocr \
