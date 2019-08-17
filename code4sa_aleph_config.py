@@ -57,7 +57,7 @@ OAUTH = [{
     'consumer_key': os.environ.get('GOOGLE_OAUTH_KEY'),
     'consumer_secret': os.environ.get('GOOGLE_OAUTH_SECRET'),
     'request_token_params': {
-        'scope': 'https://www.googleapis.com/auth/userinfo.email'
+        'scope': 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile'
     },
     'base_url': 'https://www.googleapis.com/oauth2/v1/',
     'request_token_url': None,
