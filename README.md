@@ -101,7 +101,7 @@ ALEPH_ARCHIVE_PATH=/aleph/filestore
 ## Deployment
 
 ```
-dokku config:set aleph \
+dokku config:set gazettes-aleph \
     ALEPH_APP_TITLE="Aleph Code4SA" \
     ALEPH_APP_NAME=aleph \
     ALEPH_FAVICON=http://code4sa.org/favicon.ico \
@@ -123,8 +123,8 @@ dokku config:set aleph \
     TESSDATA_PREFIX=/usr/share/tesseract-ocr \
     ALEPH_PDF_OCR_IMAGE_PAGES=false
 
-dokku docker-options:add aleph run,deploy  "-v /var/log/aleph:/var/log"
-dokku docker-options:add aleph run,deploy  "-v /var/lib/aleph:/opt/aleph/data"
+dokku docker-options:add gazettes-aleph run,deploy  "-v /var/log/aleph:/var/log"
+dokku docker-options:add gazettes-aleph run,deploy  "-v /var/lib/aleph:/opt/aleph/data"
 ```
 
 Then push this repo to your dokku remote:
