@@ -6,9 +6,10 @@ ENV ZA_GAZETTE_ARCHIVE_URI: http://s3-eu-west-1.amazonaws.com/code4sa-gazettes/a
 
 COPY code4sa_aleph_config.py /aleph/code4sa_aleph_config.py
 COPY requirements.txt /tmp/requirements.txt
-RUN pip install -r /tmp/requirements.txt
+RUN pip install --upgrade pip && \
+    pip install -r /tmp/requirements.txt && \
+    mkdir /app
 
-RUN mkdir /app
 COPY CHECKS /app/CHECKS
 
 WORKDIR /aleph
